@@ -1,10 +1,27 @@
 const Koa = require('koa');
 const app = new Koa();
 
-//모드 요청을 처리하는 라우터
+require('dotenv').config();
+
 app.use(ctx => {
-  ctx.body = 'Hello Koa';
+  ctx.body = 'Hello.';
 });
 
-// http listen port 생성 서버 실행
-app.listen(3000, () => console.log("Koa Server"))
+const port = process.env.PORT
+const mongoose = require('mongoose');
+// const Schema = mongoose.Schema;
+
+
+mongoose.Promise = global.Promise;
+
+
+mongoose.connect(process.env.MONGO_URI).then(
+  (response) => {
+    console.log('Successfully connected to mongodb')
+  }
+).catch(e=> {
+  console.error(e);
+})
+
+
+app.listen(port, () => console.log("Downtown Server is Started."))
