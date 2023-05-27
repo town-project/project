@@ -1,3 +1,3 @@
-const fs = require('fs')
-
-fs.writeFileSync('/Users/maseunghyun/Desktop/test.txt', 'tttt');
+// const fs = require('fs')
+export {};
+// fs.writeFileSync('/Users/maseunghyun/Desktop/test.txt', 'tttt');

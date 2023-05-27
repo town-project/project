@@ -1,26 +1,13 @@
-const Koa = require('koa');
-const app = new Koa();
-const UserInfo = require('./Schema')
-const fs = require('fs')
-require('dotenv').config();
+export {};
 
-app.use(ctx => {
-  ctx.body = 'Hello.';
+const Koa = require('koa')
+
+const app = new Koa();
+
+app.use((ctx: any) => {
+  ctx.body = 'Hello Koa';
 });
 
-const port = process.env.PORT
-const mongoose = require('mongoose');
-// const Schema = mongoose.Schema;
-
-mongoose.Promise = global.Promise;
-
-mongoose.connect(process.env.MONGO_URI).then(
-  (response) => {
-    console.log('Successfully connected to mongodb')
-  }
-).catch(e=> {
-  console.error(e);
+app.listen(3000, ()=> {
+  console.log('Server is listening to port 3000')
 })
-
-
-app.listen(port, () => console.log("Downtown Server is Started."))

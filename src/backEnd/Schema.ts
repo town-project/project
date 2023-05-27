@@ -1,17 +1,19 @@
-const mongoose = require('mongoose');
-const {Schema} = mongoose;
+export {};
 
-const Author = new Schema({
-    userId: String,
-    passwood: String,
-});
+// const mongoose = require('mongoose');
+// const {Schema} = mongoose;
 
-const UserInfo = new Schema({
-    userId: String,
-    username: String,
-    nickname: String,
-    phone: Number,
-    date: {type: Date, default: Date.now}
-})
+// const Author = new Schema({
+//     userId: String,
+//     passwood: String,
+// });
 
-module.exports = mongoose.model('UserInfo', UserInfo)
+// const UserInfo = new Schema({
+//     userId: String,
+//     username: String,
+//     nickname: String,
+//     phone: Number,
+//     date: {type: Date, default: Date.now}
+// })
+
+// module.exports = mongoose.model('UserInfo', UserInfo)
