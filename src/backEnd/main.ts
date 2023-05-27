@@ -1,13 +1,14 @@
-export {};
+// import { Context } from 'react';
+import { Context } from "vm";
 
 const Koa = require('koa')
 
 const app = new Koa();
 
-app.use((ctx: any) => {
+app.use((ctx : Context) => {
   ctx.body = 'Hello Koa';
 });
 
-app.listen(3000, ()=> {
-  console.log('Server is listening to port 3000')
+app.listen(8080, ()=> {
+  console.log('Server is listening to port 8080')
 })
