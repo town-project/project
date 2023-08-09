@@ -9,12 +9,12 @@ import DbComponent from "@/app/DbComponent";
 
 export default function Main() {
   const [isToggled, setIsToggled] = useState(false);
-  const [userToggled, setUserToggled] = useState(false);
-  const initialState = true;
+  // const [userToggled, setUserToggled] = useState(false);
+  // const initialState = true;
   const [view, setView] = useState(false);
 
   return (
-    <main className={styles.main}>
+    <main>
       <>
         <div>
           <div className={styles.header}>
@@ -36,10 +36,10 @@ export default function Main() {
                 />
               )}
             </div>
-            <div className={styles.titleContainer}>
-              <div className={styles.title}>MBTI TEST</div>
-            </div>
+            <div className={styles.title}>MBTI TEST</div>
+            {/* 유저버튼 */}
             <div
+              className={styles.imageContainer}
               onClick={() => {
                 setView(!view);
               }}
@@ -59,9 +59,7 @@ export default function Main() {
           </div>
         </div>
       </>
-      <main>
-        <DbComponent />
-      </main>
+      <DbComponent />
       <div className={styles.footer}>
         <div className={styles.footerimage}>
           <img src="../images/kakao.png" width="40" height="40" />

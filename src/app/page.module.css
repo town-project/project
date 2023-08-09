@@ -1,29 +1,4 @@
-.header__right {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  background-color: black;
-}
-
-.header__right:not(.userToggled) {
-  display: none;
-}
-
-.header__menulist {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  background-color: black;
-}
-
-.header__menulist:not(.isToggled) {
-  display: none;
-}
-
 .header {
-  /* float: left;
-    display: flex;
-    justify-content: center; */
   display: flex;
   grid-template-columns: repeat(3, auto);
   justify-content: space-between;
@@ -31,11 +6,6 @@
   top: 0;
   right: 0;
   left: 0;
-  /* position: fixed; */
-}
-.header__menulist {
-  list-style: none;
-  display: flex;
 }
 .title {
   margin: 3px;
@@ -43,31 +13,21 @@
   font-size: 2rem;
   align-items: center;
 }
-.titleContainer {
-  display: grid;
-  /* align-items: center;  */
-}
 .footer {
   display: grid;
   background-color: rgb(166, 166, 166);
-  /* justify-content: space-between; */
   position: fixed;
   width: 100%;
+  left: 0;
   bottom: 0;
 }
-/* .footerimage {
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    margin: 0 auto;
-    padding: 10;
-  } */
 
 .footerimage {
   display: grid;
   grid-template-columns: repeat(4, auto);
-  grid-gap: 10px; /* 각 이미지들 사이에 10px의 간격을 줍니다. */
+  grid-gap: 10px;
   margin: 0 auto;
-  padding: 10px; /* 수정: 10px로 패딩을 주세요. */
+  padding: 10px;
 }
 /* menu나 user 클릭시 포인터 */
 .imageContainer {
@@ -91,7 +51,7 @@
   top: 0;
   bottom: 0;
   bottom: 0;
-  width: 25%; /* 슬라이드할 화면의 너비를 조절합니다. */
+  width: 25%; /* 슬라이드할 화면의 너비 조절 */
   background-color: #f0f0f0;
   /* ... */
 
