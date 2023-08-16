@@ -1,11 +1,14 @@
-"use client";
-require("dotenv").config();
-
 import React, { useState } from "react";
-import styles from "../../../app/page.module.css";
+import styles from "./page.module.css";
 import { Button } from "semantic-ui-react";
 import Dropdown from "./Dropdown";
-import DbComponent from "@/app/DbComponent";
+import menu from "../../images/menu.png";
+import close from "../../images/close.png";
+import facebook from "../../images/facebook.png";
+import insta from "../../images/insta.png";
+import naver from "../../images/naver.png";
+import user from "../../images/user.png";
+import kakao from "../../images/kakao.png";
 
 export default function Main() {
   const [isToggled, setIsToggled] = useState(false);
@@ -26,10 +29,10 @@ export default function Main() {
               }}
             >
               {!isToggled ? (
-                <img src="../images/menu.png" width="50" height="50" />
+                <img src={menu} width="50" height="50" />
               ) : (
                 <img
-                  src="../images/close.png"
+                  src={close}
                   width="40"
                   height="40"
                   style={{ margin: 3.5, padding: 1.4 }}
@@ -46,26 +49,26 @@ export default function Main() {
             >
               {view ? (
                 <img
-                  src="../images/close.png"
+                  src={close}
                   width="40"
                   height="40"
                   style={{ margin: 3.5, padding: 1.4 }}
                 />
               ) : (
-                <img src="../images/user.png" width="50" height="50" />
+                <img src={user} width="50" height="50" />
               )}
               {view && <Dropdown />}
             </div>
           </div>
         </div>
       </>
-      <DbComponent />
+
       <div className={styles.footer}>
         <div className={styles.footerimage}>
-          <img src="../images/kakao.png" width="40" height="40" />
-          <img src="../images/facebook.png" width="40" height="40" />
-          <img src="../images/insta.png" width="40" height="40" />
-          <img src="../images/naver.png" width="40" height="40" />
+          <img src={kakao} width="40" height="40" />
+          <img src={facebook} width="40" height="40" />
+          <img src={insta} width="40" height="40" />
+          <img src={naver} width="40" height="40" />
         </div>
       </div>
     </main>
