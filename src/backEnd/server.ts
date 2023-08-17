@@ -1,12 +1,9 @@
-// import { Context } from 'react';
-import { Context } from "vm";
-
 const Koa = require("koa");
 
 const app = new Koa();
 
-app.use((ctx: Context) => {
-  ctx.body = "Hello Koa";
+app.use((ctx: any) => {
+  ctx.body = "Hello Town Team.";
 });
 
 app.listen(8080, () => {
