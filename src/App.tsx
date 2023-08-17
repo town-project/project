@@ -1,12 +1,10 @@
-import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import Main from "./frontEnd/Components/Main/Main";
+import MainCopy from "./frontEnd/Components/Main/MainCopy";
 
 function App() {
   return (
     <div>
-      <Main />
+      <MainCopy />
     </div>
   );
 }
