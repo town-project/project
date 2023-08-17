@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./page.module.css";
 import { Button } from "semantic-ui-react";
-import Dropdown from "./Dropdown";
+// import Dropdown from "./Dropdown";
 import menu from "../../images/menu.png";
 import close from "../../images/close.png";
 import facebook from "../../images/facebook.png";
@@ -9,13 +9,18 @@ import insta from "../../images/insta.png";
 import naver from "../../images/naver.png";
 import user from "../../images/user.png";
 import kakao from "../../images/kakao.png";
+import {setButtonText} from '../../Redux/slice/MainSlice';
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState } from "../../Redux/store/store";
 
 export default function Main() {
   const [isToggled, setIsToggled] = useState(false);
   // const [userToggled, setUserToggled] = useState(false);
   // const initialState = true;
   const [view, setView] = useState(false);
-
+  const btnText = useSelector((state: RootState) => state.MainReducer.ButtonText);
+  const dispatch = useDispatch();
+  
   return (
     <main>
       <>
@@ -29,7 +34,7 @@ export default function Main() {
               }}
             >
               {!isToggled ? (
-                <img src={menu} width="50" height="50" />
+                <img src={menu} width="50" height="50"/>
               ) : (
                 <img
                   src={close}
@@ -45,6 +50,7 @@ export default function Main() {
               className={styles.imageContainer}
               onClick={() => {
                 setView(!view);
+                // dispatch(setButtonText(['???', "ㅁㄴㅇㅁㄴㅇ"]));
               }}
             >
               {view ? (
@@ -57,7 +63,7 @@ export default function Main() {
               ) : (
                 <img src={user} width="50" height="50" />
               )}
-              {view && <Dropdown />}
+              {view && btnText.map(text => <li>{text}</li>)}
             </div>
           </div>
         </div>
