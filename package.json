@@ -38,7 +38,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "nodemon --watch 'src/**/*' -e ts --exec ts-node ./src/backEnd/server.ts"
+    "server": "nodemon --watch ./src/backEnd/* -e ts --exec ts-node ./src/backEnd/server.ts"
   },
   "eslintConfig": {
     "extends": [
@@ -66,5 +66,6 @@
     "@types/react-dom": "^18.2.7",
     "nodemon": "^3.0.1",
     "ts-node": "^10.9.1"
-  }
+  },
+  "proxy": "http://localhost:8000"
 }
