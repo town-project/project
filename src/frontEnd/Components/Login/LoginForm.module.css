@@ -1,0 +1,87 @@
+.formBox {
+  width: 500px;
+  height: 500px;
+  margin: 100px auto;
+  text-align: center;
+}
+
+h2 {
+  letter-spacing: 3px;
+}
+
+.inputTitle {
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+  margin-right: 15px;
+}
+
+.inputSection:nth-child(2) {
+  margin-top: 60px;
+}
+.inputSection {
+  margin-top: 20px;
+}
+
+.inputValue {
+  width: 250px;
+  height: 25px;
+  border-radius: 70px;
+  border: 1px solid gray;
+  padding: 10px 20px;
+}
+
+.inputValue:hover {
+  outline: 1px solid #ababab;
+}
+
+.inputValue:focus {
+  outline: 1px solid black;
+}
+
+.sendBtn {
+  margin-top: 15px;
+  width: 290px;
+  height: 40px;
+  border-radius: 50px;
+  border: 1px solid gray;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  letter-spacing: 5px;
+}
+
+.sendBtn:hover {
+  background-color: #3e3e3e;
+}
+
+.cancleBtn {
+  width: 290px;
+  height: 40px;
+  border-radius: 50px;
+  border: 1px solid gray;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  font-size: 16px;
+  letter-spacing: 5px;
+}
+
+.cancle:hover {
+  background-color: #ffffff;
+  color: white;
+}
+
+.accountOptionsBox {
+  margin-top: 50px;
+}
+.accountOptions {
+  font-size: 14px;
+  margin: 0px 30px;
+  cursor: pointer;
+}
+
+.accountOptions:hover {
+  color: gray;
+}

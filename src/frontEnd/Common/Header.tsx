@@ -19,8 +19,11 @@ import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+
 
 export default function Header() {
+  
   // 메뉴 비활/활성화 (Default -> true)
   const menuCheck = useSelector(
     (state: RootState) => state.MainReducer.MenuBtn
@@ -53,8 +56,8 @@ export default function Header() {
   const menuDispatch = useDispatch(); // 메뉴 버튼 변경
   const anchorDispatch = useDispatch(); // 앵커 위치 정보 전달
 
-// 메뉴 버튼 bool 값 변경하기 위한 함수
-function menuClick() {
+  // 메뉴 버튼 bool 값 변경하기 위한 함수
+  function menuClick() {
     menuDispatch(setMenuBtn(!menuCheck));
   }
 
@@ -66,73 +69,85 @@ function menuClick() {
   // 드랍다운 제거
   function dropDownClose() {
     anchorDispatch(setAnchorEl(null));
-  };
+  }
+
+  
 
   useEffect(() => {
-    console.log('헤더 컴포넌트')
+    console.log("헤더 컴포넌트");
   }, []);
-  
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={0}>
-            <Grid item xs={4}>
-                <Button>
-                    {menuCheck ? (
-                    <img
-                        src={menu}
-                        onClick={menuClick}
-                        alt="menu"
-                        width="50"
-                        height="50"
-                    />
-                    ) : (
-                    <img
-                        src={close}
-                        onClick={menuClick}
-                        alt="menu"
-                        width="50"
-                        height="50"
-                    />
-                    )}
-                </Button>
-            </Grid>
-
-            {/* 타이틀 */}
-            <Grid item xs={4}>
-                <Box
-                    sx={{
-                    fontSize: "2rem",
-                    fontWeight: "500",
-                    margin: "3px",
-                    textAlign: "center",
-                    }}
-                >
-                MBTI TEST
-                </Box>
-            </Grid>
-
-            {/* 로그인 버튼 */}
-            <Grid item xs={4} textAlign="right">
-                <Button onClick={loginClick}>
-                    <img src={user} alt="user" width="50" height="50" />
-                </Button>
-
-                <Menu
-                    anchorEl={anchorElCheck}
-                    open={open}
-                    onClose={dropDownClose}
-                    TransitionComponent={Fade}
-                >
-                    {loginCheck
-                    ? member.map((e) => (
-                        <MenuItem onClick={dropDownClose}>{e}</MenuItem>
-                        ))
-                    : NonMember.map((e) => (
-                        <MenuItem onClick={dropDownClose}>{e}</MenuItem>
-                        ))}
-                </Menu>
-            </Grid>
+      <Grid container spacing={0}>
+        <Grid item xs={4}>
+          <Button>
+            {menuCheck ? (
+              <img
+                src={menu}
+                onClick={menuClick}
+                alt="menu"
+                width="50"
+                height="50"
+              />
+            ) : (
+              <img
+                src={close}
+                onClick={menuClick}
+                alt="menu"
+                width="50"
+                height="50"
+              />
+            )}
+          </Button>
         </Grid>
+
+        {/* 타이틀 */}
+        <Grid item xs={4}>
+          <Box
+            sx={{
+              fontSize: "2rem",
+              fontWeight: "500",
+              margin: "3px",
+              textAlign: "center",
+            }}
+          >
+            MBTI TEST
+          </Box>
+        </Grid>
+
+        {/* 로그인 버튼 */}
+        <Grid item xs={4} textAlign="right">
+          <Button onClick={loginClick}>
+            <img src={user} alt="user" width="50" height="50" />
+          </Button>
+
+          <Menu
+            anchorEl={anchorElCheck}
+            open={open}
+            onClose={dropDownClose}
+            TransitionComponent={Fade}
+          >
+            {loginCheck
+              ? member.map((e) => (
+                
+                  <MenuItem
+                    onClick={(e)=>{
+                    dropDownClose()
+                    
+                    }}>
+                      <Link to="/login">
+                    {e}
+                    </Link>
+                  </MenuItem>
+                  
+                ))
+              : NonMember.map((e) => (
+                  <MenuItem onClick={dropDownClose}>{e}</MenuItem>
+                ))}
+          </Menu>
+        </Grid>
+      </Grid>
     </Box>
   );
-};
+}
