@@ -31,5 +31,7 @@ export async function connect() {
   //   // 연결이 완료되거나 에러가 나면 연결 종료.
   //   await client.close();
   // }
+
+  return client;
 }
 module.exports = { connect };

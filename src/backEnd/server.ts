@@ -1,12 +1,9 @@
 import { connect } from "./mongoConnect";
 
-export {};
-
 const Koa = require("koa");
 const Router = require("koa-router");
 const bodyParser = require("koa-bodyparser");
 const authRouter = require("./api/Auth");
-const { MongoClient, ServerApiVersion } = require("mongodb");
 
 const app = new Koa();
 const router = new Router();
@@ -14,19 +11,25 @@ const PORT = 8000;
 
 app.use(bodyParser());
 
-router.get("/", async (ctx: any) => {
-  ctx.body = "Hello Town Team 😁";
-});
+async function init() {
+  try {
+    await connect(); // MongoDB에 연결
 
-connect();
+    router.get("/", async (ctx: any) => {
+      ctx.body = "Hello Town Team 😁";
+    });
 
-app.use(router.routes());
+    app.use(router.routes());
 
-router.use("/auth", authRouter.routes());
-app.use(router.routes()).use(router.allowedMethods());
+    router.use("/auth", authRouter.routes());
+    app.use(router.routes()).use(router.allowedMethods());
 
-app.listen(PORT, () => {
-  console.log(`Server is listening to port ${PORT}`);
-});
+    app.listen(PORT, () => {
+      console.log(`Server is listening to port ${PORT}`);
+    });
+  } catch (err) {
+    console.error("Error initializing app", err);
+  }
+}
 
-module.exports = {};
+init();
