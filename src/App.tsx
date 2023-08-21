@@ -11,10 +11,7 @@ function App() {
       <Router>
         <Routes>
           {/* 메인 페이지 */}
-          <Route
-            path={`${process.env.PUBLIC_URL}/`}
-            element={<Main />}
-          ></Route>
+          <Route path={`${process.env.PUBLIC_URL}/`} element={<Main />}></Route>
           {/* 로그인 페이지 */}
           <Route path="/login" element={<LoginForm />}></Route>
           {/* 회원가입 페이지 */}
