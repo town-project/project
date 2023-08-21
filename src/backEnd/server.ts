@@ -1,13 +1,17 @@
-import { connect } from "./mongoConnect";
+require("dotenv").config();
+
+export {};
 
 const Koa = require("koa");
 const Router = require("koa-router");
 const bodyParser = require("koa-bodyparser");
 const authRouter = require("./api/Auth");
+const { connect } = require("./mongoConnect");
 
 const app = new Koa();
 const router = new Router();
-const PORT = 8000;
+const PORT = process.env.PORT;
+console.log(PORT);
 
 app.use(bodyParser());
 

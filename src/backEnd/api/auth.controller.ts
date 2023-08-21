@@ -1,18 +1,15 @@
-const { connect } = require("./mongoConnect");
-export {};
+const { connect } = require("../mongoConnect");
 
 //회원가입 (Create)
 exports.registerUser = async (ctx: any) => {
   const { id, password, phone, nickname } = ctx.request.body;
   const date = new Date();
-
   // MongoDB 클라이언트 연결
   const client = await connect();
   // MBTI 데이터베이스 접근
   const db = client.db("MBTI");
   // Auth 컬렉션 접근
   const collection = db.collection("Auth");
-
   try {
     // 중복 사용자 체크 (예: ID 기준)
     const existingUser = await collection.findOne({ id });
@@ -21,7 +18,6 @@ exports.registerUser = async (ctx: any) => {
       ctx.body = { error: "User with this ID already exists" };
       return;
     }
-
     // 사용자 정보 저장
     await collection.insertOne({ id, password, phone, nickname, date });
     ctx.status = 201; // Created
