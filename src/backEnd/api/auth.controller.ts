@@ -1,4 +1,5 @@
 const { connect } = require("../mongoConnect");
+export {};
 
 //회원가입 (Create)
 exports.registerUser = async (ctx: any) => {
