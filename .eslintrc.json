@@ -10,9 +10,5 @@
     "sourceType": "module"
   },
   "plugins": ["react"],
-  "rules": {},
-  "parser": "@typescript-eslint/parser",
-  "parseOptions": {
-    "project": "./tsconfig.json"
-  }
+  "rules": {}
 }

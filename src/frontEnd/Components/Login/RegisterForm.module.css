@@ -12,7 +12,8 @@ h2 {
 
 .inputTitle {
   display: inline-block;
-  width: 100px;
+  width: 105px;
+  max-lines: 1;
   text-align: right;
   margin-right: 15px;
 }
@@ -76,9 +77,8 @@ h2 {
   margin-left: 60px;
 }
 
-.cancle:hover {
-  background-color: #ffffff;
-  color: white;
+.cancleBtn:hover {
+  background-color: #fcfcfc;
 }
 
 .accountOptionsBox {
