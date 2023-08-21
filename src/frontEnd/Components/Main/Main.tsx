@@ -2,9 +2,7 @@ import Box from "@mui/material/Box";
 
 import Header from "../../Common/Header";
 import Footer from "../../Common/Footer";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginForm from "../Login/LoginForm";
-import RegisterForm from "../Login/RegisterForm";
+import Paper from "@mui/material/Paper";
 
 export default function Main() {
   return (

@@ -16,9 +16,9 @@ function App() {
             element={<Main />}
           ></Route>
           {/* 로그인 페이지 */}
-          <Route path="/login" element={<LoginForm />}></Route>{" "}
+          <Route path="/login" element={<LoginForm />}></Route>
           {/* 회원가입 페이지 */}
-          <Route path="/join" element={<RegisterForm />}></Route>{" "}
+          <Route path="/join" element={<RegisterForm />}></Route>
         </Routes>
       </Router>
     </div>
