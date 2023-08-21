@@ -1,7 +1,16 @@
 import React from "react";
 import styles from "./RegisterForm.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterForm() {
+  // 페이지를 이동할 네비게이트 함수
+  const navigate = useNavigate();
+
+  // 메인으로 돌아가는 함수
+  function goBack(): void {
+    navigate("/");
+  }
+
   return (
     <div className={styles.formBox}>
       <h2>회원가입</h2>
@@ -43,7 +52,9 @@ export default function RegisterForm() {
         <button className={styles.RegisterBtn}>회원가입</button>
       </div>
       <div className={styles.inputSection}>
-        <button className={styles.cancleBtn}>취소</button>
+        <button className={styles.cancleBtn} onClick={goBack}>
+          취소
+        </button>
       </div>
       {/* </div> */}
     </div>

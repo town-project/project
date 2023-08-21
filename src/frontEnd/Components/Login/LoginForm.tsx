@@ -1,9 +1,19 @@
 import React from "react";
 import styles from "./LoginForm.module.css";
+import { useNavigate } from "react-router-dom";
+
 export default function LoginForm() {
+  // 페이지를 이동할 네비게이트 함수
+  const navigate = useNavigate();
+
+  // 메인으로 돌아가는 함수
+  function goBack(): void {
+    navigate("/");
+  }
+
   return (
     <div className={styles.formBox}>
-      <h2>회원가입</h2>
+      <h2>로그인</h2>
       <div className={styles.inputSection}>
         <input className={styles.inputValue} placeholder="ID" />
       </div>
@@ -12,6 +22,9 @@ export default function LoginForm() {
       </div>
       <div className={styles.inputSection}>
         <button className={styles.sendBtn}>로그인</button>
+        <button className={styles.sendBtn} onClick={goBack}>
+          취소
+        </button>
       </div>
 
       <div className={styles.accountOptionsBox}>

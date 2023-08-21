@@ -10,7 +10,6 @@ import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../Redux/store/store";
 import {
   setMenuBtn,
-  setLoginState,
   setAnchorEl,
 } from "../Redux/slice/MainSlice";
 import Button from "@mui/material/Button";
@@ -19,36 +18,37 @@ import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
-  
+  // 페이지를 이동할 네비게이트 함수
+  const navigate = useNavigate();
+
   // 메뉴 비활/활성화 (Default -> true)
-  const menuCheck = useSelector(
+  const menuCheck: boolean = useSelector(
     (state: RootState) => state.MainReducer.MenuBtn
   );
 
   // (로그인/비로그인) 상태에 맞는 드랍다운 원소 출력
-  const loginCheck = useSelector(
+  const loginCheck: boolean = useSelector(
     (state: RootState) => state.MainReducer.LoginState
   );
 
   // 드랍다운 생성하기 위한 element의 위치 정보
-  const anchorElCheck = useSelector(
+  const anchorElCheck: HTMLElement | null = useSelector(
     (state: RootState) => state.MainReducer.anchorEl
   );
 
   // 드랍다운 생성 여부
-  const open = Boolean(anchorElCheck);
+  const open: boolean = Boolean(anchorElCheck);
 
   // 로그인 상태 여부
-  const member = useSelector(
+  const member: string[] = useSelector(
     (state: RootState) => state.MainReducer.MemberDropdown
   );
 
   // 로그인 상태 여부
-  const NonMember = useSelector(
+  const NonMember: string[] = useSelector(
     (state: RootState) => state.MainReducer.NonMemberDropdown
   );
 
@@ -57,21 +57,24 @@ export default function Header() {
   const anchorDispatch = useDispatch(); // 앵커 위치 정보 전달
 
   // 메뉴 버튼 bool 값 변경하기 위한 함수
-  function menuClick() {
+  function menuClick(): void {
     menuDispatch(setMenuBtn(!menuCheck));
   }
 
   // 로그인 드랍다운 위치 정보 알아내는 함수
-  function loginClick(event: React.MouseEvent<HTMLElement>) {
+  function loginClick(event: React.MouseEvent<HTMLElement>): void {
     anchorDispatch(setAnchorEl(event.currentTarget));
   }
 
   // 드랍다운 제거
-  function dropDownClose() {
+  function dropDownClose(): void {
     anchorDispatch(setAnchorEl(null));
   }
 
-  
+  // 페이지 이동 함수
+  function movePage(page: string): void {
+    navigate(`/${page}`);
+  }
 
   useEffect(() => {
     console.log("헤더 컴포넌트");
@@ -130,20 +133,22 @@ export default function Header() {
           >
             {loginCheck
               ? member.map((e) => (
-                
                   <MenuItem
-                    onClick={(e)=>{
-                    dropDownClose()
-                    
-                    }}>
-                      <Link to="/login">
-                    {e}
-                    </Link>
-                  </MenuItem>
-                  
+                    onClick={(e) => {
+                      dropDownClose();
+                    }}
+                  ></MenuItem>
                 ))
               : NonMember.map((e) => (
-                  <MenuItem onClick={dropDownClose}>{e}</MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      // 로그인, 회원가입 버튼 클릭시 목적에 맞게 페이지 라우팅 및 MenuItem 닫음
+                      movePage(e);
+                      dropDownClose();
+                    }}
+                  >
+                    {e}
+                  </MenuItem>
                 ))}
           </Menu>
         </Grid>
