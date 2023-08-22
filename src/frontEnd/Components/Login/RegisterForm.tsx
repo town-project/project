@@ -42,7 +42,7 @@ const RegisterForm: React.FC = () => {
   const pwDispatch = useDispatch();
 
   // 비밀번호 변경 함수
-  function pwChange(e: React.ChangeEvent<HTMLInputElement>, id: number): void {
+  function pwChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, id: number): void {
     // 비밀번호 상태 변경
     if (id === 1) pwDispatch(setPassWord(e.target.value));
     // 비밀번호 확인 상태 변경
@@ -59,6 +59,12 @@ const RegisterForm: React.FC = () => {
   function goBack(): void {
     navigate("/");
   }
+
+  // 회원가입 컴포넌트가 마운트 될 때마다 리덕스의 password와 passwordCheck 초기화
+  useEffect(() => {
+    pwDispatch(setPassWord(''));
+    pwDispatch(setPassWordCheck(''));
+  }, [])
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -93,6 +99,7 @@ const RegisterForm: React.FC = () => {
           variant="outlined"
           fullWidth
           margin="normal"
+          onChange={(e) => pwChange(e, 1)}
           InputProps={{
             style: {
               borderRadius: 70,
@@ -112,6 +119,7 @@ const RegisterForm: React.FC = () => {
           variant="outlined"
           fullWidth
           margin="normal"
+          onChange={(e) => pwChange(e, 2)}
           InputProps={{
             style: {
               borderRadius: 70,
@@ -196,6 +204,8 @@ const RegisterForm: React.FC = () => {
               // 비밀번호와 비밀번호 확인이 서로 일치하는지 확인
               if (pwSame()) alert("회원 가입 성공");
               else alert("비밀번호가 8자리 이하이거나 서로 일치하지 않습니다.");
+
+              console.log(pw, pwCheck)
             }}
           >
             회 원 가 입
