@@ -19,10 +19,13 @@ export async function connect() {
   try {
     await client.connect();
     // Ping을 보내 연결이 잘 됐늕 ㅣ확인
-    await client.db("Auth").command({ ping: 1 });
+
+    const collection = await client.db("MBTI").collection("User");
+
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
+    return collection;
   } catch (err) {
     console.error("Error connecting to MongoDB", err);
     throw err;
@@ -31,7 +34,5 @@ export async function connect() {
   //   // 연결이 완료되거나 에러가 나면 연결 종료.
   //   await client.close();
   // }
-
-  return client;
 }
 module.exports = { connect };

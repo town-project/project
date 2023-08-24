@@ -1,4 +1,5 @@
-const { connect } = require("./mongoConnect");
+import User, { IUser } from "../models/user";
+const { connect } = require("../mongoConnect");
 export {};
 
 //회원가입 (Create)
@@ -7,11 +8,7 @@ exports.registerUser = async (ctx: any) => {
   const date = new Date();
 
   // MongoDB 클라이언트 연결
-  const client = await connect();
-  // MBTI 데이터베이스 접근
-  const db = client.db("MBTI");
-  // Auth 컬렉션 접근
-  const collection = db.collection("Auth");
+  const collection = await connect();
 
   try {
     // 중복 사용자 체크 (예: ID 기준)
@@ -38,8 +35,42 @@ exports.userlist = (ctx: any) => {
 };
 
 // 단일 회원 정보 조회 (Read)
-exports.userinfo = (ctx: any) => {
-  ctx.body = "유저 정보 조회 API";
+exports.userinfo = async (ctx: any) => {
+  const { username, password } = ctx.request.body;
+
+  const collection = await connect();
+
+  console.log(username, password);
+  try {
+    const user: IUser | null = await collection.findOne({
+      username,
+      password,
+    });
+
+    console.log(user);
+
+    // user 존재 여부 확인
+    if (!user) {
+      ctx.status = 400; // Bad Request
+      ctx.body = { isValid: false, message: "Invalid username or password" };
+      return;
+    }
+
+    // 일치하면 true
+    ctx.body = {
+      isValid: true,
+      message: "User found",
+      user: username,
+      password: password,
+    };
+  } catch (errorL: any) {
+    ctx.status = 500; // Internal Server Error
+    ctx.body = {
+      isValid: false,
+      message: "An error occurred",
+      error: errorL.message,
+    };
+  }
 };
 
 // 회원정보수정 (Update)
