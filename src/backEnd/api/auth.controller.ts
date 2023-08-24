@@ -1,3 +1,4 @@
+import User, { IUser } from "../models/user";
 const { connect } = require("../mongoConnect");
 export {};
 
@@ -11,6 +12,7 @@ exports.registerUser = async (ctx: any) => {
   const db = client.db("MBTI");
   // Auth 컬렉션 접근
   const collection = db.collection("Auth");
+
   try {
     // 중복 사용자 체크 (예: ID 기준)
     const existingUser = await collection.findOne({ id });
@@ -35,8 +37,40 @@ exports.userlist = (ctx: any) => {
 };
 
 // 단일 회원 정보 조회 (Read)
-exports.userinfo = (ctx: any) => {
-  ctx.body = "유저 정보 조회 API";
+exports.userinfo = async (ctx: any) => {
+  const { username, password } = ctx.request.body;
+
+  const collection = await connect();
+
+  try {
+    const user: IUser | null = await collection.findOne({
+      username,
+      password,
+    });
+
+    // user 존재 여부 확인
+    if (!user) {
+      ctx.status = 400; // Bad Request
+      ctx.body = { isValid: false, message: "Invalid username or password" };
+      return;
+    }
+
+    console.log(user);
+    // 일치하면 true
+    ctx.body = {
+      isValid: true,
+      message: "User found",
+      user: username,
+      password: password,
+    };
+  } catch (errorL: any) {
+    ctx.status = 500; // Internal Server Error
+    ctx.body = {
+      isValid: false,
+      message: "An error occurred",
+      error: errorL.message,
+    };
+  }
 };
 
 // 회원정보수정 (Update)

@@ -5,7 +5,7 @@ const authRouter = new Router();
 
 authRouter.post("/registerUser", authControl.registerUser);
 authRouter.get("/userlist", authControl.userlist);
-authRouter.get("/userinfo", authControl.userinfo);
+authRouter.post("/userinfo", authControl.userinfo);
 authRouter.post("/updateUser", authControl.updateUser);
 authRouter.post("/deleteUser", authControl.deleteUser);
 authRouter.post("/login", authControl.login);
