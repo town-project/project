@@ -1,4 +1,6 @@
 import "./App.css";
+import FindID from "./frontEnd/Components/Login/FindID";
+import FindPW from "./frontEnd/Components/Login/FindPW";
 import LoginForm from "./frontEnd/Components/Login/LoginForm";
 import RegisterForm from "./frontEnd/Components/Login/RegisterForm";
 import Main from "./frontEnd/Components/Main/Main";
@@ -16,6 +18,10 @@ function App() {
           <Route path="/login" element={<LoginForm />}></Route>
           {/* 회원가입 페이지 */}
           <Route path="/join" element={<RegisterForm />}></Route>
+          {/* 아이디찾기 페이지 */}
+          <Route path="/findid" element={<FindID />}></Route>
+          {/* 비밀번호찾기 페이지 */}
+          <Route path="/findpw" element={<FindPW />}></Route>
         </Routes>
       </Router>
     </div>

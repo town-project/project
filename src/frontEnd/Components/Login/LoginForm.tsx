@@ -12,6 +12,16 @@ export default function LoginForm() {
     navigate("/");
   }
 
+  //ID찾기로 돌아가는 함수
+  function findId(): void {
+    navigate("/findid");
+  }
+
+  //PW찾기로 돌아가는 함수
+  function findPw(): void {
+    navigate("/findPW");
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Header />
@@ -53,11 +63,11 @@ export default function LoginForm() {
         <Button
           variant="contained"
           fullWidth
-          sx={{ borderRadius: 70, marginRight: 10 }}
           style={{
             height: 50,
             borderRadius: 70,
             marginTop: 15,
+            marginRight: 10,
             fontSize: 16,
             backgroundColor: "black",
             color: "white",
@@ -82,11 +92,17 @@ export default function LoginForm() {
           취소
         </Button>
         <div style={{ marginTop: 50 }}>
-          <span style={{ fontSize: 14, margin: "0 30px", cursor: "pointer" }}>
+          <span
+            onClick={findId}
+            style={{ fontSize: 14, margin: "0 30px", cursor: "pointer" }}
+          >
             아이디 찾기
           </span>
           |
-          <span style={{ fontSize: 14, margin: "0 30px", cursor: "pointer" }}>
+          <span
+            onClick={findPw}
+            style={{ fontSize: 14, margin: "0 30px", cursor: "pointer" }}
+          >
             비밀번호 찾기
           </span>
         </div>
