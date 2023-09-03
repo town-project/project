@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 
 import Header from "../../Common/Header";
 import Footer from "../../Common/Footer";
-import Paper from "@mui/material/Paper";
 
 export default function Main() {
   return (

@@ -1,21 +1,14 @@
 // 이미지 import
-import menu from "../images/menu.png";
-import close from "../images/close.png";
-import user from "../images/user.png";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
+import { Box, Grid, Menu, MenuItem, Fade, IconButton } from "@mui/material";
+
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../Redux/store/store";
-import {
-  setMenuBtn,
-  setAnchorEl,
-} from "../Redux/slice/MainSlice";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Fade from "@mui/material/Fade";
+import { setMenuBtn, setAnchorEl } from "../Redux/slice/MainSlice";
 
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -84,25 +77,13 @@ export default function Header() {
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={0}>
         <Grid item xs={4}>
-          <Button>
+          <IconButton onClick={menuClick}>
             {menuCheck ? (
-              <img
-                src={menu}
-                onClick={menuClick}
-                alt="menu"
-                width="50"
-                height="50"
-              />
+              <MenuIcon fontSize="large" />
             ) : (
-              <img
-                src={close}
-                onClick={menuClick}
-                alt="menu"
-                width="50"
-                height="50"
-              />
+              <CloseIcon aria-label="close" fontSize="large" />
             )}
-          </Button>
+          </IconButton>
         </Grid>
 
         {/* 타이틀 */}
@@ -121,9 +102,9 @@ export default function Header() {
 
         {/* 로그인 버튼 */}
         <Grid item xs={4} textAlign="right">
-          <Button onClick={loginClick}>
-            <img src={user} alt="user" width="50" height="50" />
-          </Button>
+          <IconButton aria-label="user" onClick={loginClick}>
+            <AccountCircleIcon fontSize="large" />
+          </IconButton>
 
           <Menu
             anchorEl={anchorElCheck}
