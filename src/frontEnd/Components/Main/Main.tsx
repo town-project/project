@@ -2,11 +2,13 @@ import Box from "@mui/material/Box";
 
 import Header from "../../Common/Header";
 import Footer from "../../Common/Footer";
+import GameList from "./GameList";
 
 export default function Main() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Header />
+      <GameList />
       {/* <BrowserRouter>
         <Routes>
           <Route
