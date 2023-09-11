@@ -2,7 +2,7 @@ import { Box, Paper, Grow, Grid, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Header from "../../Common/Header";
 import Footer from "../../Common/Footer";
-
+import { useNavigate,  } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#c0c0c0",
@@ -15,6 +15,13 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 export default function Mbti_test() {
+  const navigate = useNavigate();
+
+  // 페이지 이동 함수
+  function movePage(page: string): void {
+    navigate(`/${page}`);
+  };
+
   // MBTI 검사 전 간략한 설명(추후 서버에서 받아와 리덕스 스토어에 데이터 저장할 예정)
   const explain: string[] = [
     "검사 시간은 대략 15분 입니다",
@@ -45,7 +52,7 @@ export default function Mbti_test() {
       </Box>
 
       {/* 하단 버튼 부붙 */}
-      <Box sx={{ textAlign: "center", marginTop: 30 }}>
+      <Box sx={{ textAlign: "center", marginTop: 10 }}>
         <Grow
           in={true}
           style={{ transformOrigin: "0 0 0" }}
@@ -54,6 +61,7 @@ export default function Mbti_test() {
           <Button
             variant="contained"
             sx={{ borderRadius: 70 }}
+            onClick={() => movePage("MBTI_Question")}
             style={{
               height: "5vh",
               width: "10vw",
@@ -75,6 +83,7 @@ export default function Mbti_test() {
           <Button
             variant="contained"
             sx={{ borderRadius: 70 }}
+            onClick={() => movePage("")}
             style={{
               height: "5vh",
               width: "10vw",

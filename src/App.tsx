@@ -3,6 +3,7 @@ import FindID from "./frontEnd/Components/Login/FindID";
 import FindPW from "./frontEnd/Components/Login/FindPW";
 import LoginForm from "./frontEnd/Components/Login/LoginForm";
 import RegisterForm from "./frontEnd/Components/Login/RegisterForm";
+import MBTI_Question from "./frontEnd/Components/MBTI_Test/MBTI_Question";
 import MBTI_Test from "./frontEnd/Components/MBTI_Test/MBTI_Test";
 import Main from "./frontEnd/Components/Main/Main";
 
@@ -25,6 +26,8 @@ function App() {
           <Route path="/findpw" element={<FindPW />}></Route>
           {/* MBTI 테스트 페이지 */}
           <Route path="/MBTI_Test" element={<MBTI_Test />}></Route>
+          {/* MBTI 질문 페이지 */}
+          <Route path="/MBTI_Question" element={<MBTI_Question />}></Route>
         </Routes>
       </Router>
     </div>
